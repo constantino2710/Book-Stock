@@ -17,6 +17,10 @@
   --red-500: #F75A68;
 }
 
+span{
+  color: var(--green-500);
+  font-size: 1.2rem;
+}
 
 
 body{
