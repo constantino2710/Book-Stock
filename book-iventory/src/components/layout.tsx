@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Sidebar } from "@/components/sidebar";
 import { Home } from "@/pages/home";
 import { Stock } from "@/pages/stock";
-import { Create } from "@/pages/create";
 
 export function MainLayout() {
   const { pathname } = useLocation();
@@ -13,7 +12,6 @@ export function MainLayout() {
       {showSidebar && <Sidebar />}
       <div>
         <Routes>
-          <Route path="/create" element={<Create />} />
           <Route path="/" element={<Home />} />
           <Route path="/stock" element={<Stock />} />
         </Routes>
