@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { buscarNaOpenLibrary, salvarNoBack4App, buscarLivrosSalvos } from "../api";
-import { Livro } from "../components/Livro";
+import { buscarNaOpenLibrary, salvarNoBack4App, buscarLivrosSalvos,deleteLivro } from "../api";
+import { Livro } from "../components/livro";
 import { FloatingButton } from "@/components/fab";
 
 export function Stock() {
@@ -10,6 +10,18 @@ export function Stock() {
   async function carregarLivros() {
     const livrosSalvos = await buscarLivrosSalvos();
     setLivros(livrosSalvos);
+  }
+
+  async function handleDeleteLivro(livro) {
+    const confirm = window.confirm(`Deseja realmente deletar "${livro.titulo}"?`);
+    if (!confirm) return;
+
+    const resultado = await deleteLivro(livro);
+    if (resultado) {
+      carregarLivros(); // recarrega a lista após a exclusão
+    } else {
+      alert("Erro ao deletar livro.");
+    }
   }
 
   async function adicionarLivro() {
@@ -40,7 +52,6 @@ export function Stock() {
       <h1 className="text-4xl font-bold">Stock</h1>
       <p className="mt-4 text-lg mb-8">Manage your book stock here.</p>
 
-      {/* Área de busca */}
       <div className="flex flex-col items-center gap-2 w-full max-w-xl mb-8">
         <input
           className="border border-gray-300 px-4 py-2 rounded w-full"
@@ -56,10 +67,9 @@ export function Stock() {
         </button>
       </div>
 
-      {/* Lista de livros salvos */}
       <ul className="w-full max-w-xl space-y-4">
         {livros.map((livro) => (
-          <Livro key={livro.objectId} livro={livro} />
+          <Livro key={livro.objectId} livro={livro} onDelete={carregarLivros} />
         ))}
       </ul>
 
