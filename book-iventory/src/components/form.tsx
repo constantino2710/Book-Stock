@@ -28,11 +28,7 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
             placeholder="Título"
             className="w-full h-[2.5rem] rounded-lg bg-[var(--gray-600)] text-white pl-2 focus:border-[var(--green-300)] focus:border focus:outline-none"
           />
-          <input
-            type="text"
-            placeholder="Gênero"
-            className="w-full h-[2.5rem] rounded-lg bg-[var(--gray-600)] text-white pl-2 focus:border-[var(--green-300)] focus:border focus:outline-none"
-          />
+
           <div className="flex flex-row justify-between gap-[1rem] w-full">
             <input
               type="text"

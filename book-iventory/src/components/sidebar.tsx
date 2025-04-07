@@ -6,7 +6,7 @@ export function Sidebar() {
   const { pathname } = useLocation();
 
   return (
-    <div className='w-[15rem] h-screen bg-[var(--gray-600)] text-white flex flex-col'>
+    <div className='w-[15rem] h-full bg-[var(--gray-600)] text-white flex flex-col'>
       <nav className='flex flex-col items-center gap-2 mt-2'>
         <img src={logo} alt="" className='h-32 w-auto'/>
 
