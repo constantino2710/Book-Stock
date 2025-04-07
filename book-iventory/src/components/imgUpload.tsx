@@ -1,6 +1,10 @@
-import { useState, useRef } from 'react';
+import { useState, useRef} from 'react';
 
-export function ImageUpload() {
+interface ImageUploadProps {
+  onUpload: (url: string) => void;
+}
+
+export function ImageUpload({ onUpload }: ImageUploadProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -9,7 +13,9 @@ export function ImageUpload() {
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreview(reader.result as string);
+        const result = reader.result as string;
+        setPreview(result);
+        onUpload(result); // envia para o formulário pai
       };
       reader.readAsDataURL(file);
     }
@@ -22,17 +28,10 @@ export function ImageUpload() {
     if (file) handleFile(file);
   };
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-  };
-
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => e.preventDefault();
   const handleDragEnter = () => setIsDragging(true);
   const handleDragLeave = () => setIsDragging(false);
-
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
-  };
-
+  const triggerFileInput = () => fileInputRef.current?.click();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) handleFile(file);

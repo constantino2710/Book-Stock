@@ -121,3 +121,20 @@ export const atualizarLivro = async (
   }
 };
 
+export const adicionarLivroManual = async (
+  dados: { titulo: string; autor: string; capaUrl?: string }
+): Promise<Livro | null> => {
+  try {
+    const response = await axios.post(BACK4APP_URL, dados, {
+      headers: headersJson,
+    });
+
+    if (response.status === 201) {
+      return { ...dados, ...response.data };
+    }
+  } catch (error) {
+    const err = error as AxiosError;
+    console.error("Erro ao adicionar livro manualmente:", err.message);
+  }
+  return null;
+};
