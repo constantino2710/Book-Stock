@@ -15,5 +15,5 @@
 
 ## Objetivo:
 
-desenvolver um sistema de biblioteca em Alpha para que o usuario possa registrar seus livros lidos, Podendo ser implementada uma pagina de login/ e comentarios para comparar com outros usuários
+Desenvolver um sistema de biblioteca para que o usuário possa registrar seus livros lidos e pretendidos, Podendo ser implementada uma página de login/e comentários para comparar com outros usuários.
 
